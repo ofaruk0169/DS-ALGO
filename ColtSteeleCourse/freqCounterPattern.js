@@ -16,6 +16,29 @@ function same (arr1, arr2) {
     if(arr1.length !== arr2.length) {
         return false;
     }
+    // We then need to loop over one of the arrays, in this case array 1.  
+    for(let i = 0; i < arr1.length; i++) {
+        //the iteration will go through each value of array 1 and square it (arr1[i] **2)
+        //indexOf will check where in the array of arr2 that squared value we jsut got resides and we put it into the value "correctIndex".
+        //if "correctIndex" is equal to -1, it means that there is no corresponding squared value and we return false.
+        let correctIndex = arr2.indexOf(arr1[i] **2)
+        if(correctIndex === -1) {
+            return false;
+        }
+        //this is basically what happens if the if block fails. We splice away the index at array 2 that we found (correctIndex) and take 
+        //1 value away (the second argument)
+        arr2.splice(correctIndex,1)
+    }
+    //if we get to the end of this code block we can return true. 
+    return true;
+}
+
+
+//Above code without comments. 
+function same (arr1, arr2) {
+    if(arr1.length !== arr2.length) {
+        return false;
+    }
     for(let i = 0; i < arr1.length; i++) {
         let correctIndex = arr2.indexOf(arr1[i] **2)
         if(correctIndex === -1) {
@@ -25,3 +48,5 @@ function same (arr1, arr2) {
     }
     return true;
 }
+
+same([1,2,3,2], [9,1,4,4])
