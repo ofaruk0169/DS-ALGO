@@ -1,3 +1,4 @@
+//Freq Pattern 
 // Challenge 1
 
 // Write a function called same, which accepts two arrays. The function should return true if every value in the array has
@@ -9,7 +10,7 @@ same([1, 2, 3], [4, 1, 9]) //true
 same([1,2,3], [1, 9]) //false 
 same([1,2,1], [4,4,1]) //false, must be the same frequency 
 
-//Naive Solution
+//Naive Solution/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function same (arr1, arr2) {
     // we can tell immediately if the first array will work with the second based upon if the same number of array items are present. 
@@ -50,3 +51,160 @@ function same (arr1, arr2) {
 }
 
 same([1,2,3,2], [9,1,4,4])
+
+//This solution is o(n*2) because we are looping and then the function "indexOf" is also loopin over the array which is a nested loop. This is 
+//quadratic time. As N grows, the length of our array will grow 
+
+
+
+//Frequency Counter Example/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function same(arr1, arr2) {
+    if(arr1.length !== arr2.length) {
+        return false;
+    }
+    let frequencyCounter1 = {}
+    let frequencyCounter2 = {}
+    for(let val of arr1) {
+        frequencyCounter1[val] = (frequencyCounter1[val] || 0) + 1
+    }
+    for(let val of arr2) {
+        frequencyCounter2[val] = (frequencyCounter2[val] || 0) + 1
+    }
+    for(let key in frequencyCounter1) {
+        if(!(key ** 2 in frequencyCounter2)) {
+            return false;
+        }
+        if (frequencyCounter2[key ** 2] !== frequencyCounter1[key]) {
+            return false;
+        }
+    }
+    return true;
+}
+
+//Two loops is better than a nested loop. On > n*2
+
+function same(arr1, arr2) {
+    if(arr1.length !== arr2.length) {
+        return false;
+    }
+    //We use 2 objects. These are used to count freq of individual values in the array. 
+    let frequencyCounter1 = {}
+    let frequencyCounter2 = {}
+    for(let val of arr1) {
+        //for each val in array 1 
+        // we're going to add 1 to the frequency counter, or initialise it to 1. 
+
+        // Here, we access the value, and we are equating it to something. 
+        //As it has just been created, it is undefined and cannot be added to one, so the logical OR operation 
+        //gives it the ability to become 0 in this case. 
+        //This allows to add one in either case. 
+        frequencyCounter1[val] = (frequencyCounter1[val] || 0) + 1
+
+    }
+    //the same will be done for this for loop. The end result is an object that will tell us how many times each element occurs in that list. 
+    for(let val of arr2) {
+        frequencyCounter2[val] = (frequencyCounter2[val] || 0) + 1
+    }
+
+    // We then loop over the first array and see if the element in the array sqaured is IN array 2. 
+    for(let key in frequencyCounter1) {
+        if(!(key ** 2 in frequencyCounter2)) {
+            return false;
+        }
+
+        //This just checks if the squared value of the key exists, access the value. Check the value on the initial array. 
+        // If this also exists, and they are the same continue to the final reutrn. if not return false. 
+
+        if (frequencyCounter2[key ** 2] !== frequencyCounter1[key]) {
+            return false;
+        }
+    }
+    console.log(frequencyCounter1);
+    console.log(frequencyCounter2);
+    return true;
+}
+
+///////////////////////the following was a coding challenge but for letters in a word /////////////////////////////
+
+function validAnagram(string1, string2){
+  
+    //firstly I split the letters in the word and put them each in their own array 
+
+    let arr1 = string1.split('');
+    let arr2 = string2.split('');
+  
+    //this was a check to see if the array length for either was the same, if not the code would be returned false. 
+
+    if (arr1.length !== arr2.length) {
+        return false; 
+    }
+    
+    // I created an object to hold the frequency 
+
+   let object1 = {}
+   let object2 = {}
+    
+   //we go over the first array and check each letter. If it exists we add 1 to the corresponding key value pair.
+   //If not we create the key value of 0 and add 1 
+    for (let letter of arr1) {
+      object1[letter] = (object1[letter] || 0) + 1    
+    }
+    
+    //the same is done here for the second array.
+    for (let letter2 of arr2) {
+      object2[letter2] = (object2[letter2] || 0) + 1
+    }
+    
+    //loop through one of the arrays to see if firstly the key freq is the same in each array 
+    
+    //we access the key, therefore the value corresponding. If the corresponding value is not the same we return false. 
+    for (let key in object1) {
+        if (object2[key] !== object1[key]) {
+            return false;
+        }
+    }
+    //lastly if it passes all these checks we can safely return true that the first word and second are anagrams of one another. 
+    return true;
+  }
+
+
+////////////////////////////////////////function without comments//////////////////////////////////////
+
+function validAnagram(string1, string2){
+  
+    let arr1 = string1.split('');
+    let arr2 = string2.split('');
+  
+
+    if (arr1.length !== arr2.length) {
+        return false; 
+    }
+    
+
+   let object1 = {}
+   let object2 = {}
+    
+  
+    for (let letter of arr1) {
+      object1[letter] = (object1[letter] || 0) + 1    
+    }
+    
+    for (let letter2 of arr2) {
+      object2[letter2] = (object2[letter2] || 0) + 1
+    }
+    
+    
+    for (let key in object1) {
+        if (object2[key] !== object1[key]) {
+            return false;
+        }
+    }
+    return true;
+  }
+
+  /////////////////example anagrams//////////////////////////////////////////////////////////////////////////////////////////
+
+validAnagram('', '') // true
+validAnagram('aaz', 'zza') // false
+validAnagram('anagram', 'nagaram') // true
