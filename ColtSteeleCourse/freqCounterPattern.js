@@ -71,6 +71,7 @@ function same(arr1, arr2) {
     for(let val of arr2) {
         frequencyCounter2[val] = (frequencyCounter2[val] || 0) + 1
     }
+
     for(let key in frequencyCounter1) {
         if(!(key ** 2 in frequencyCounter2)) {
             return false;
@@ -125,115 +126,35 @@ function same(arr1, arr2) {
     return true;
 }
 
-///////////////////////the following was a coding challenge but for letters in a word /////////////////////////////
+
 
 function validAnagram(string1, string2){
   
-    //firstly I split the letters in the word and put them each in their own array 
-
     let arr1 = string1.split('');
     let arr2 = string2.split('');
   
-    //this was a check to see if the array length for either was the same, if not the code would be returned false. 
-
+    
     if (arr1.length !== arr2.length) {
         return false; 
     }
     
-    // I created an object to hold the frequency 
-
    let object1 = {}
    let object2 = {}
     
-   //we go over the first array and check each letter. If it exists we add 1 to the corresponding key value pair.
-   //If not we create the key value of 0 and add 1 
     for (let letter of arr1) {
       object1[letter] = (object1[letter] || 0) + 1    
     }
     
-    //the same is done here for the second array.
     for (let letter2 of arr2) {
-      object2[letter2] = (object2[letter2] || 0) + 1
+      object2[letter2] = (object1[letter2] || 0) + 1    
     }
     
     //loop through one of the arrays to see if firstly the key freq is the same in each array 
     
-    //we access the key, therefore the value corresponding. If the corresponding value is not the same we return false. 
-    for (let key in object1) {
-        if (object2[key] !== object1[key]) {
-            return false;
-        }
-    }
-    //lastly if it passes all these checks we can safely return true that the first word and second are anagrams of one another. 
-    return true;
-  }
-
-
-////////////////////////////////////////function without comments//////////////////////////////////////
-
-function validAnagram(string1, string2){
-  
-    let arr1 = string1.split('');
-    let arr2 = string2.split('');
-  
-
-    if (arr1.length !== arr2.length) {
-        return false; 
-    }
-    
-
-   let object1 = {};
-   let object2 = {};
-    
-  
-    for (let letter of arr1) {
-      object1[letter] = (object1[letter] || 0) + 1    
-    }
-    
-    for (let letter2 of arr2) {
-      object2[letter2] = (object2[letter2] || 0) + 1
-    }
-    
-    
-    for (let key in object1) {
+    for (let key of object1) {
         if (object2[key] !== object1[key]) {
             return false;
         }
     }
     return true;
   }
-
-  /////////////////example anagrams//////////////////////////////////////////////////////////////////////////////////////////
-
-validAnagram('', '') // true
-validAnagram('aaz', 'zza') // false
-validAnagram('anagram', 'nagaram') // true
-
-
-
-//////////////////Instructor Example Solution ///////////////////////////////////////////////////////////
-
-function validAnagram(first, second) {
-    if (first.length !== second.length) {
-        return false;
-    }
-
-    const lookup = {};
-
-    for (let i = 0; i < first.length; i++) {
-        let letter = first[i];
-        //if letter exists, increment, otherwise set to 1
-        lookup[letter] ? lookup[letter] += 1 : lookup[letter] = 1;
-    }
-
-    for (let i = 0; i < second.length; i++) {
-        let letter = second[i];
-        //can't find letter or letter is zero then it's not an anagram
-        if (!lookup[letter]) {
-            return false;
-        } else {
-            lookup[letter] -=1;
-        }
-        return true;
-    }
-}
