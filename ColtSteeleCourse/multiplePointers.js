@@ -95,3 +95,4 @@ arr = [1,1,2,3,3,4,5,6,6,7]
 }
 
 //Explain this in code tomorrow I am too tired right now 
+//I get it, it's all self explanatory code. 
