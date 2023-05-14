@@ -71,13 +71,19 @@ function maxSubarraySum(arr, num){
     //this is the failsafe
     if (arr.length < num) return null;
     //This loop gets the first 3 digits and puts them into the variable, maxSum
+    //In our example, it will add the first three elements [2, 6, 9] together, resulting in maxSum = 17.
     for (let i = 0; i < num; i++) {
       maxSum += arr[i];
     }
     //Put the max sum we obtained into this tempSum variable
+    // This will be used to track the sum of the current subarray during the sliding window process.
     tempSum = maxSum;
     //here we take tempSum
     for (let i = num; i < arr.length; i++) {
+        //A)arr[i-num] is the value no longer part of the sliding window. 
+        // B)arr[i] is the newest value that is the whole "sliding" part of the sliding window. THe new value.
+        //We are taking away A) as it is no longer needed in the value we have obtained from the tempSum, and added B) as it is the value from the 
+        //array we are adding.  
       tempSum = tempSum - arr[i - num] + arr[i];
       maxSum = Math.max(maxSum, tempSum);
     }
