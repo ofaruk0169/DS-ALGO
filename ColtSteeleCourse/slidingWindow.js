@@ -33,6 +33,7 @@ function maxSubarraySum(arr, num) {
     for(let i = 0; i < arr.length - num + 1; i++){
         temp = 0;
         //the second for loop adds the 3 elements together into temp
+        //as i increases, we are adding the increase on top of the current j together to get to the latter parts of the sliding window. 
         for (let j = 0; j < num; j++) {
             temp += arr[i + j];
         }
