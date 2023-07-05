@@ -92,7 +92,7 @@ function maxCharacter(str) {
    
 }
 
-console.log(maxCharacter("javascript"));
+// console.log(maxCharacter("javascript"));
 
 //fizzbuzz 
 // 0 - 100, 3 = "fizz"
@@ -113,4 +113,46 @@ function fizzbuzz () {
     }
 }
 
-fizzbuzz();
+// fizzbuzz();
+
+
+//How to debug nodejs code with chatgpt
+//Here's an example where we have a loop and we want to track the incrementing value using the debugger statement:
+function trackIncrementingValue() {
+    for (let i = 1; i <= 10; i++) {
+      debugger; // Pause execution at each iteration
+      console.log('Current value:', i);
+    }
+  }
+  
+  trackIncrementingValue();
+
+//   In this example, we have a function called trackIncrementingValue that contains a loop. The loop iterates from 1 to 10 using the variable i. At each iteration, we have placed the debugger statement, which will pause the execution and allow us to inspect the value of i.
+
+// To run this code and debug it:
+
+// Save the code in a JavaScript file (e.g., debugExample.js).
+
+// Open your terminal or command prompt and navigate to the directory where the file is located.
+
+// Run the following command to start the Node.js debugger:
+// node inspect debugExample.js
+
+// The debugger will pause at the first debugger statement encountered in the loop. At this point, you can start interacting with the debugger.
+// n or next: Execute the current line and move to the next line.
+// c or continue: Continue execution until the next breakpoint or the end of the program.
+// s or step: Step into a function call.
+// o or out: Step out of the current function.
+// p or pause: Pause the execution at the current point.
+
+// To see the value of i, you can type repl and press Enter. This will start the REPL mode, allowing you to evaluate expressions.
+
+// In the REPL mode, type i and press Enter to see the value of i. It should display 1 initially.
+
+// To continue execution to the next iteration, type cont and press Enter.
+
+// The debugger will pause at the second iteration. Again, you can type repl and i to see the updated value of i, which should be 2.
+
+// Repeat the steps to continue debugging and track the incrementing value at each iteration.
+
+// By using the debugger statement in the loop, you can observe and inspect the value of i as it increments, helping you understand how the loop behaves and verify if it is working as expected.
