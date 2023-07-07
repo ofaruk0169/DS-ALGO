@@ -156,3 +156,21 @@ function trackIncrementingValue() {
 // Repeat the steps to continue debugging and track the incrementing value at each iteration.
 
 // By using the debugger statement in the loop, you can observe and inspect the value of i as it increments, helping you understand how the loop behaves and verify if it is working as expected.
+
+
+function chunkArray(arr, len) {
+    //init chuncked arr
+    const chunkedArr = [];
+    //set index
+    let i = 0;
+
+    // loop while index is less than the array length 
+    while (i < arr.length) {
+        // slice out from the index to the index + the chunk length and push on to the chunked array 
+        chunckedArr.push(arr.slice(i, i + len));
+        //incremenent by chunk length
+        i += len;
+    }
+
+    return chunckedArr;
+}
