@@ -1,1 +1,18 @@
-test
+fun charCount(str: String): Map<Char, Int> {
+    val charMap = mutableMapOf<Char, Int>()
+    for (char in str) {
+        val lowercaseChar = char.lowercaseChar()
+        if (lowercaseChar.isLetterOrDigit()) {
+            charMap[lowercaseChar] = charMap.getOrDefault(lowercaseChar, 0) + 1
+        }
+    }
+    return charMap
+}
+
+fun main() {
+    val result = charCount("Hello, world!!!")
+    
+    for ((char, count) in result) {
+        println("$char: $count")
+    }
+}
