@@ -1,0 +1,27 @@
+/*Write a function called same (I will be writing a function called sameSquared), which accepts two arrays.
+The function should return true if every value in the array has it's corresponding value squared in the 
+second array. The frequency of the values must be the same.*/ 
+
+fun sameSquared(array1: IntArray, array2: IntArray): Boolean {
+    if (array1.size == array2.size) {
+        for (item1 in array1) {  
+            if (array2.contains(item1*item1)) {  
+                //continue the loop
+            } else {
+                return false
+            }
+        } 
+    } else {
+        return false
+    }
+    return true
+} 
+
+
+
+
+
+fun main() {
+    val result = sameSquared(intArrayOf(1, 2, 3), intArrayOf(1, 4, 4))
+    println(result)
+}
