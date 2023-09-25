@@ -3,25 +3,37 @@ The function should return true if every value in the array has it's correspondi
 second array. The frequency of the values must be the same.*/ 
 
 fun sameSquared(array1: IntArray, array2: IntArray): Boolean {
-    if (array1.size == array2.size) {
-        for (item1 in array1) {  
-            if (array2.contains(item1*item1)) {  
-                //continue the loop
-            } else {
-                return false
-            }
-        } 
-    } else {
+    if (array1.size != array2.size) {
         return false
     }
+
+    val frequencyMap1 = mutableMapOf<Int, Int>()
+    val frequencyMap2 = mutableMapOf<Int, Int>()
+
+    for (num in array1) {
+        frequencyMap1[num] = frequencyMap1.getOrDefault(num, 0) + 1
+    }
+
+    for (num in array2) {
+        frequencyMap2[num] = frequencyMap2.getOrDefault(num, 0) + 1
+    }
+
+    for ((key, value) in frequencyMap1) {
+        val squaredKey = key * key
+        if (!frequencyMap2.containsKey(squaredKey) || frequencyMap2[squaredKey] != value) {
+            return false
+        }
+    }
+
     return true
-} 
-
-
-
-
+}
 
 fun main() {
     val result = sameSquared(intArrayOf(1, 2, 3), intArrayOf(1, 4, 4))
     println(result)
 }
+
+
+
+//This code has a time complexity of O(n), where n is the length of the input arrays, because it iterates through both arrays only once to build the frequency maps and then compares the frequency maps. 
+
