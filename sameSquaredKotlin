@@ -10,6 +10,7 @@ fun sameSquared(array1: IntArray, array2: IntArray): Boolean {
     val frequencyMap1 = mutableMapOf<Int, Int>()
     val frequencyMap2 = mutableMapOf<Int, Int>()
 
+//basically, this part accesses num, if it's not there it defaults it to 0 or adds 1. 
     for (num in array1) {
         frequencyMap1[num] = frequencyMap1.getOrDefault(num, 0) + 1
     }
@@ -17,6 +18,9 @@ fun sameSquared(array1: IntArray, array2: IntArray): Boolean {
     for (num in array2) {
         frequencyMap2[num] = frequencyMap2.getOrDefault(num, 0) + 1
     }
+
+//here we get the sqauredkey value in map2, we check if the corresponding squared value is there OR if the frequency
+//of that value is present. 
 
     for ((key, value) in frequencyMap1) {
         val squaredKey = key * key
