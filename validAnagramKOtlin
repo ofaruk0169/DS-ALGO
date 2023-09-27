@@ -1,24 +1,25 @@
 fun validAnagram(string1: String, string2: String): Boolean {
-    if (string1.size != string2.size) {
+    if (string1.length != string2.length) {
         return false
     }
 
-    val frequencyMap1 = mutableMapOf<String, Int>()
+    val frequencyMap1 = mutableMapOf<Char, Int>()
 
     for (letter in string1) {
         frequencyMap1[letter] = frequencyMap1.getOrDefault(letter, 0) + 1
     }
 
-    for ((key, value) in frequencyMap1) {
-        if (!frequencyMap2.containsKey(key) || frequencyMap2[key] != value) {
-            return false
-        }
+    val frequencyMap2 = mutableMapOf<Char, Int>()
+
+    for (letter in string2) {
+        frequencyMap2[letter] = frequencyMap2.getOrDefault(letter, 0) + 1
     }
 
-    return true
+    // Check if the two frequency maps are equal
+    return frequencyMap1 == frequencyMap2
 }
 
 fun main() {
-    val result = validAnagram("omare", "eramo"
+    val result = validAnagram("omare", "eramo")
     println(result)
 }
