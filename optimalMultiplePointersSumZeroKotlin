@@ -1,0 +1,36 @@
+fun sumZero(arr: IntArray): IntArray? {
+    var left = 0
+    var right = arr.size - 1
+
+    while (left < right) {
+        val sum = arr[left] + arr[right]
+
+        when {
+            sum == 0 -> {
+                // Found a pair with a sum of zero
+                return intArrayOf(arr[left], arr[right])
+            }
+            sum < 0 -> {
+                // If the sum is negative, increase the left pointer
+                left++
+            }
+            else -> {
+                // If the sum is positive, decrease the right pointer
+                right--
+            }
+        }
+    }
+
+    // If no such pair is found
+    return null
+}
+
+fun main() {
+    val result = sumZero(intArrayOf(-4, -2, 0, 1, 4, 5))
+
+    if (result != null) {
+        println("Pair with sum zero: ${result[0]}, ${result[1]}")
+    } else {
+        println("No pair with sum zero found")
+    }
+}
