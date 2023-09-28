@@ -1,0 +1,16 @@
+fun maxSubarraySum(arr: IntArray, num: Int): Int? {
+    if (num > arr.size) {
+        return null
+    }
+    var max = Int.MIN_VALUE
+    for (i in 0 until arr.size - num + 1) {
+        var temp = 0
+        for (j in 0 until num) {
+            temp += arr[i + j]
+        }
+        if (temp > max) {
+            max = temp
+        }
+    }
+    return max
+}
