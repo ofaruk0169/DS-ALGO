@@ -1,0 +1,24 @@
+fun countUniqueValues(arr: IntArray): Int {
+    // Create a HashSet to store unique values
+    val uniqueSet = HashSet<Int>()
+    
+    // Iterate through the elements of the input array
+    for (num in arr) {
+        // Add the current element to the HashSet
+        // HashSet automatically ensures that only unique values are stored
+        uniqueSet.add(num)
+    }
+    
+    // The size of the HashSet represents the count of unique values
+    return uniqueSet.size
+}
+
+fun main() {
+    val array = intArrayOf(1, 2, 2, 3, 4, 4, 5, 5, 6)
+    
+    // Call the countUniqueValues function with the example array
+    val uniqueCount = countUniqueValues(array)
+    
+    // Print the count of unique values
+    println("Number of unique values: $uniqueCount")
+}
