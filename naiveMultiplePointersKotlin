@@ -1,0 +1,19 @@
+fun sumZero(arr: IntArray): IntArray? {
+    for (i in 0 until arr.size) {
+        for (j in i + 1 until arr.size) {
+            if (arr[i] + arr[j] == 0) {
+                return intArrayOf(arr[i], arr[j])
+            }
+        }
+    }
+    return null
+}
+
+fun main() {
+    val result = sumZero(intArrayOf(-4, -2, 0, 1, 4, 5))
+    if (result != null) {
+        println("Pair with sum zero: ${result[0]}, ${result[1]}")
+    } else {
+        println("No pair with sum zero found")
+    }
+}
