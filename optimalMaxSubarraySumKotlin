@@ -1,0 +1,18 @@
+fun maxSubarraySum(arr: List<Int>, num: Int): Int? {
+    var maxSum = 0
+    var tempSum = 0
+    
+    if (arr.size < num) return null
+    
+    for (i in 0 until num) {
+        maxSum += arr[i]
+    }
+    tempSum = maxSum
+    
+    for (i in num until arr.size) {
+        tempSum = tempSum - arr[i - num] + arr[i]
+        maxSum = maxOf(maxSum, tempSum)
+    }
+    
+    return maxSum
+}
