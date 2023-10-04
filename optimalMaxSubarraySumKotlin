@@ -3,16 +3,21 @@ fun maxSubarraySum(arr: List<Int>, num: Int): Int? {
     var tempSum = 0
     
     if (arr.size < num) return null
-    
+    //get the inital sum value up to the given number
     for (i in 0 until num) {
         maxSum += arr[i]
     }
     tempSum = maxSum
-    
+    //after given number, get the last sum, take away end of window, and add latest window number
     for (i in num until arr.size) {
         tempSum = tempSum - arr[i - num] + arr[i]
         maxSum = maxOf(maxSum, tempSum)
     }
     
     return maxSum
+}
+
+fun main() {
+    val result = validAnagram("omare", "eramo")
+    println(result)
 }
