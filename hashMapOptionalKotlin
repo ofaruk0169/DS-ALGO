@@ -1,0 +1,35 @@
+/*Write a function called sameFrequency. Given two positive integers, 
+find out if the two numbers have the same frequency of digits.*/
+
+fun sameFrequency(int1: Int, int2: Int): Boolean {
+    //convert both integers into a string
+	val IntString1 = int1.toString()    
+    val IntString2 = int2.toString()   
+    
+    if (IntString1.length !== IntString2.length) {
+        return false
+    }
+    
+    val freqIntStringMap1 = mutableMapOf<Char, Int>()
+    val freqIntStringMap2 = mutableMapOf<Char, Int>()
+    
+    for (char in IntString1) {
+        freqIntStringMap1[char] = freqIntStringMap1.getOrDefault(char, 0) + 1
+    }
+    
+    for (char in IntString2) {
+        freqIntStringMap2[char] = freqIntStringMap2.getOrDefault(char, 0) + 1
+    }
+    
+    if (freqIntStringMap1 == freqIntStringMap2) {
+        return true
+    } else {
+        return false
+    }
+
+}
+
+fun main() {
+    val result = sameFrequency(123, 321)
+    println(result)
+}
