@@ -6,12 +6,23 @@ frequency counter pattern OR the multiple pointers pattern.*/
 //FRequency COunter Example
 
 fun areThereDuplicates(vararg args: Any): Boolean { 
-
-    val frequencyMap1 = mutableMapOf<Char, Int>()
-
+    val frequencyMap = mutableMapOf<Any, Int>()
+    
+    for (arg in args) {
+        frequencyMap[arg] = frequencyMap.getOrDefault(arg, 0) + 1
+    }
+    
+    // Check if there are more than 1 value in each key of the frequency map, return true if so.
+    for (key in frequencyMap) {
+        if ((key.value ?: 0) > 1) {
+            return true
+        }
+    }
+    
+    return false
 }
 
 fun main() {
-    val result = validAnagram("omare", "eramo")
+    val result = areThereDuplicates(1, 2, 3, 6, 6, 5)
     println(result)
 }
