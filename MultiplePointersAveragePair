@@ -4,8 +4,26 @@
 determine if there is a pair of values in the array where the average of the pair equals 
 the target average. There may be more than one pair that matches the average target.*/
 
-fun averagePair() {
+fun averagePair(array: IntArray, target: Double): Boolean {
     
+    var left = 0
+    var right = array.size - 1
+  
+       while (left < right) {
+        val average = (array[left] + array[right]) / 2.0
+
+        if (average == target) {
+            return true
+        } else if (average < target) {
+            left++
+        } else {
+            right--
+        }
+    }
+    return false
 }
 
-
+fun main() {
+	val result = averagePair(intArrayOf(1, 2, 3), 2.5)
+    print(result)
+}
