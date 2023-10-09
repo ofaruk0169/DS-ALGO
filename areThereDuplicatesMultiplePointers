@@ -1,24 +1,22 @@
-/*Implement a function called, areThereDuplicates which accepts a variable number of arguments, 
-and checks whether there are any duplicates among the arguments passed in.  You can solve this 
-using the 
-frequency counter pattern OR the multiple pointers pattern.*/
+fun areThereDuplicates(vararg args: Any): Boolean {
+    val sortedArgs = args.sorted() // Sort the arguments
 
-//Multiple Pointers Example
+    var left = 0
+    var right = 1
 
-fun areThereDuplicates(vararg args: Any): Boolean { 
-	var left = 0
-    var right = args.length - 1
-    
-    while (left < right) {
-        when {
-            left == right -> {
-                return true
-            }
+    while (right < sortedArgs.size) {
+        if (sortedArgs[left] == sortedArgs[right]) {
+            return true // Found a duplicate
         }
+        left++
+        right++
     }
+    
+    return false // No duplicates found
 }
 
 fun main() {
     val result = areThereDuplicates(1, 2, 3, 6, 6, 5)
-    println(result)
+    println(result) // This should print "true" since there are duplicates (6)
 }
+
