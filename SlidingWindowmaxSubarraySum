@@ -8,3 +8,8 @@ In the first example below, [100, 200, 300] is a subarray of the original array,
 fun maxSubarraySum () {
 
 }
+
+fun main() {
+    val result = maxSubarraySum([1,4,2,10,23,3,1,0,20], 4) 
+    println(result)
+}
