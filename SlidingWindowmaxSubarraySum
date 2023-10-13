@@ -1,15 +1,23 @@
-/*Given an array of integers and a number, write a function called maxSubarraySum, 
-which finds the maximum sum of a subarray with the length of the number passed to the function.
-
-Note that a subarray must consist of consecutive elements from the original array. 
-In the first example below, [100, 200, 300] is a subarray of the original array, but [100, 300] is not.
-*/
-
-fun maxSubarraySum (arr: List<Int>, num: Int) Int? {
-
+fun maxSubarraySum(arr: List<Int>, num: Int): Int? {
+    var maxSum = 0
+    var tempSum = 0
+    
+    if (arr.size < num) return null
+    //get the inital sum value up to the given number
+    for (i in 0 until num) {
+        maxSum += arr[i]
+    }
+    tempSum = maxSum
+    //after given number, get the last sum, take away end of window, and add latest window number
+    for (i in num until arr.size) {
+        tempSum = tempSum - arr[i - num] + arr[i]
+        maxSum = maxOf(maxSum, tempSum)
+    }
+    
+    return maxSum
 }
 
 fun main() {
-    val result = maxSubarraySum([1,4,2,10,23,3,1,0,20], 4) 
+    val result = validAnagram("omare", "eramo")
     println(result)
 }
