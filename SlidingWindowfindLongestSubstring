@@ -13,15 +13,16 @@ fun findLongestSubstring(stringValue: String) : Int {
         //if they are the same we add to the start of the window so the end becomes the start
         sum += end
         
-        while (!substringArray.contains(end)) {
-            maxLength = maxOf(maxLength, end - start + 1)
+        while (substringArray.slice(start until end).contains(substringArray[end])) {
             start++
         }
+        maxLength = maxOf(maxLength, end - start + 1)
+
     }
     return if (maxLength == 0) 0 else maxLength
 }
 
 fun main() {
-    val result = findLongestSubstring("Onomatopoeia")
+    val result = findLongestSubstring("programming")
     println(result)
 }
