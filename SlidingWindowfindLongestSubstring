@@ -1,3 +1,27 @@
-fun findLongestSubstring() {
+//Write a function called findLongestSubstring, which accepts a string and returns the length of the 
+//longest substring with all distinct characters.
 
+fun findLongestSubstring(stringValue: String) : Int {
+    var maxLength = 0
+    var start = 0
+    var sum = 0
+    
+    var substringArray = stringValue.toCharArray()
+    
+    for (end in substringArray.indices) {
+        //loop so that if the items are the same, we continue from the window 
+        //if they are the same we add to the start of the window so the end becomes the start
+        sum += end
+        
+        while (!substringArray.contains(end)) {
+            maxLength = maxOf(maxLength, end - start + 1)
+            start++
+        }
+    }
+    return if (maxLength == 0) 0 else maxLength
+}
+
+fun main() {
+    val result = findLongestSubstring("Onomatopoeia")
+    println(result)
 }
