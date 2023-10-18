@@ -1,16 +1,12 @@
-fun countdown(num: Int): Int {
-    if (num <= 0) {
-        
+fun countdown(num: Int) {
+    if (num >= 0) {
+        println(num)
+        countdown(num - 1)
+    } else {
+        println("Liftoff")
     }
-   	num--
-    countdown(num)
-    
 }
 
 fun main() {
-    val result = countdown(9)
-    if (result == 0) {
-    	println("Complete")    
-    }
-    
+    countdown(9)
 }
