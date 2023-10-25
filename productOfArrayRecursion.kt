@@ -5,23 +5,27 @@
 
 fun productOfArray(arrayValues: IntArray): Int {
     
-   total = 0
-    
-   for (i in arrayValues) {
-   
-       if (arrayValues[i] == arrayValues.size -1) return 0
+   var total = 0
+  
+   fun helper(helperInput: List<Int>) {
+        if (helperInput.isEmpty()) {
+            return
+        }
+        
+        total = total + helperInput[0]
        
-       
-       
-   }
-    
+        helper(helperInput.subList(1, helperInput.size))
+
+   } 
    
-    
+   helper(arrayValues)
    
+   return total
+     
 }
 
 fun main() {
-    val result = productOfArray((0)
+    val result = productOfArray(intArrayOf(1,2,3))
     println(result)
 }
 
