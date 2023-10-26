@@ -5,16 +5,16 @@
 
 fun productOfArray(arrayValues: IntArray): Int {
     
-   var total = 0
+   var total = 1
   
-   fun helper(helperInput: List<Int>) {
+   fun helper(helperInput: IntArray) {
         if (helperInput.isEmpty()) {
             return
         }
         
-        total = total + helperInput[0]
-       
-        helper(helperInput.subList(1, helperInput.size))
+        total *= helperInput[0]
+     
+        helper(helperInput.sliceArray(1 until helperInput.size))
 
    } 
    
@@ -25,7 +25,7 @@ fun productOfArray(arrayValues: IntArray): Int {
 }
 
 fun main() {
-    val result = productOfArray(intArrayOf(1,2,3))
+    val result = productOfArray(intArrayOf(1,2,3, 10))
     println(result)
 }
 
