@@ -1,0 +1,8 @@
+fun fib(num: Int): Int {
+    
+}
+
+fun main() {
+    val result = fib(10)
+    println(result)
+}
