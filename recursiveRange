@@ -1,0 +1,9 @@
+fun recursiveRange(num: Int): Int {
+    if (num == 0) return 0
+    return num + recursiveRange(num - 1)
+}
+
+fun main() {
+    val result = recursiveRange(6)
+    println(result)
+}
