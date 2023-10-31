@@ -1,0 +1,13 @@
+fun linearSearch(arrayNums: IntArray, targetNum: Int): Int {
+    for (index in arrayNums.indices) {
+        if (arrayNums[index] == targetNum) {
+            return index
+        }
+    }
+    return -1 // Return -1 if the targetNum is not found in the array
+}
+
+fun main() {
+    val result = linearSearch(intArrayOf(10, 15, 20, 25, 30), 15)
+    println(result)
+}
